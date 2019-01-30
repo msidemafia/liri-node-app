@@ -2,9 +2,10 @@ require("dotenv").config();
 var axios = require("axios");
 var moment = require('moment');
 var keys = require("./keys.js");
+var fs = require("fs");
 
 var op = process.argv[2];
-var search = process.argv[3];
+var search = process.argv.slice(3).join(" ");
 
 var bandQuery = "https://rest.bandsintown.com/artists/" + search + "/events?app_id=codingbootcamp";
 var movieQuery = "http://www.omdbapi.com/?i=tt3896198&apikey=88337377&t=" + search;
@@ -21,16 +22,26 @@ switch(op) {
   movieSearch();
     break;
   case "do-what-it-says":
+  whatItSays();
 }
+
+
+  var divider = "\n-------------------------------\n"
 
 
 function bandSearch() {
   axios
   .get(bandQuery)
   .then(function(response) {
-    console.log("Name of Venue: " + response.data[0].venue.name + 
+    var bandLog = "Artist: " + search + 
+    "\nName of Venue: " + response.data[0].venue.name + 
     "\nLocation: " + response.data[0].venue.city + ", " + response.data[0].venue.region + 
-    "\nDate: " + moment(response.data[1].datetime.split('T')[0]).format('YYYY MM DD'));
+    "\nDate: " + moment(response.data[1].datetime.split('T')[0]).format('YYYY MM DD')
+    
+    fs.appendFile("log.txt", bandLog + divider, function(err) {
+      if (err) throw err;
+    });
+    console.log(bandLog);
   })
   .catch(function(error) {
     if (error.response) {
@@ -59,19 +70,24 @@ function spotifySearch() {
 };
 
 function movieSearch() {
-  if(search) {
+  if(!search) {
     axios
-    .get(movieQuery)
+    .get(defaultQuery)
     .then(function(response) {
-      var result = response.data
-        console.log("Title: " + result.Title +
-        "\nYear: " + result.Year + 
-        "\nIMDB Rating: " + result.Ratings[0].Value + 
-        "\nRotten Tomatoes Rating: " + result.Ratings[1].Value + 
-        "\nCountry of Production: " + result.Country + 
-        "\nLanguage: " + result.Language +
-        "\nActors: " + result.Actors + 
-        "\nPlot: " + result.Plot);
+      var result = response.data;
+      var movieLog = "Title: " + result.Title +
+      "\nYear: " + result.Year + 
+      "\nIMDB Rating: " + result.Ratings[0].Value + 
+      "\nRotten Tomatoes Rating: " + result.Ratings[1].Value + 
+      "\nCountry of Production: " + result.Country + 
+      "\nLanguage: " + result.Language +
+      "\nActors: " + result.Actors + 
+      "\nPlot: " + result.Plot
+
+        fs.appendFile("log.txt", movieLog + divider, function(err) {
+          if (err) throw err;
+        });
+        console.log(movieLog);
     })
     .catch(function(error) {
       if (error.response) {
@@ -88,17 +104,22 @@ function movieSearch() {
   }
   else {
     axios
-    .get(defaultQuery)
+    .get(movieQuery)
     .then(function(response) {
-      var result = response.data;
-        console.log("Title: " + result.Title +
-        "\nYear: " + result.Year + 
-        "\nIMDB Rating: " + result.Ratings[0].Value + 
-        "\nRotten Tomatoes Rating: " + result.Ratings[1].Value + 
-        "\nCountry of Production: " + result.Country + 
-        "\nLanguage: " + result.Language +
-        "\nActors: " + result.Actors + 
-        "\nPlot: " + result.Plot);
+      var result = response.data
+      var movieLog = "Title: " + result.Title +
+      "\nYear: " + result.Year + 
+      "\nIMDB Rating: " + result.Ratings[0].Value + 
+      "\nRotten Tomatoes Rating: " + result.Ratings[1].Value + 
+      "\nCountry of Production: " + result.Country + 
+      "\nLanguage: " + result.Language +
+      "\nActors: " + result.Actors + 
+      "\nPlot: " + result.Plot
+
+        fs.appendFile("log.txt", movieLog + divider, function(err) {
+          if (err) throw err;
+        });
+        console.log(movieLog);
     })
     .catch(function(error) {
       if (error.response) {
@@ -113,4 +134,8 @@ function movieSearch() {
       console.log(error.config);
     });
   }
+};
+
+function whatItSays() {
+
 };
