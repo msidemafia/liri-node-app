@@ -47,15 +47,18 @@ function bandSearch() {
 
 function spotifySearch() {
   spotify.search({ type: 'track', query: search}, function(err, data) {
-    var result = data.tracks.items[0].artists[0];
+    var result = data.tracks.items[0];
+    var songDisplay = "Artist: " + result.artists[0].name +
+    "\nSong Name: " +  result.name + 
+    "\nPreview Link: " + result.preview_url + 
+    "\nAlbum: " + result.album.name;
     if (err) {
       return console.log('Error occurred: ' + err);
     }
-  console.log("Artist: " + result.name +
-  "\nSong Name: " +  search + 
-  "\nPreview Link: " + result.external_urls.spotify + 
-  "\nAlbum: " + result
-  ); 
+  console.log(songDisplay); 
+  fs.appendFile("log.txt", songDisplay + divider, function(err) {
+    if (err) throw err;
+  });
   });
 };
 
