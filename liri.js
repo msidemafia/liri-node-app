@@ -3,9 +3,13 @@ var axios = require("axios");
 var moment = require('moment');
 var keys = require("./keys.js");
 var fs = require("fs");
+var Spotify = require('node-spotify-api');
+var spotify = new Spotify(keys.spotify);
 
 var op = process.argv[2];
 var search = process.argv.slice(3).join(" ");
+
+var divider = "\n-------------------------------\n"
 
 var bandQuery = "https://rest.bandsintown.com/artists/" + search + "/events?app_id=codingbootcamp";
 var movieQuery = "http://www.omdbapi.com/?i=tt3896198&apikey=88337377&t=" + search;
@@ -25,10 +29,6 @@ switch(op) {
   whatItSays();
 }
 
-
-  var divider = "\n-------------------------------\n"
-
-
 function bandSearch() {
   axios
   .get(bandQuery)
@@ -42,30 +42,20 @@ function bandSearch() {
       if (err) throw err;
     });
     console.log(bandLog);
-  })
-  .catch(function(error) {
-    if (error.response) {
-      console.log(error.response.data);
-      console.log(error.response.status);
-      console.log(error.response.headers);
-    } else if (error.request) {
-      console.log(error.request);
-    } else {
-      console.log("Error", error.message);
-    }
-    console.log(error.config);
   });
 };
 
 function spotifySearch() {
-  var Spotify = require('node-spotify-api');
-  var spotify = new Spotify(keys.spotify);
-   
   spotify.search({ type: 'track', query: search}, function(err, data) {
+    var result = data.tracks.items[0].artists[0];
     if (err) {
       return console.log('Error occurred: ' + err);
     }
-  console.log(data); 
+  console.log("Artist: " + result.name +
+  "\nSong Name: " +  search + 
+  "\nPreview Link: " + result.external_urls.spotify + 
+  "\nAlbum: " + result
+  ); 
   });
 };
 
@@ -88,18 +78,6 @@ function movieSearch() {
           if (err) throw err;
         });
         console.log(movieLog);
-    })
-    .catch(function(error) {
-      if (error.response) {
-        console.log(error.response.data);
-        console.log(error.response.status);
-        console.log(error.response.headers);
-      } else if (error.request) {
-        console.log(error.request);
-      } else {
-        console.log("Error", error.message);
-      }
-      console.log(error.config);
     });
   }
   else {
@@ -120,22 +98,16 @@ function movieSearch() {
           if (err) throw err;
         });
         console.log(movieLog);
-    })
-    .catch(function(error) {
-      if (error.response) {
-        console.log(error.response.data);
-        console.log(error.response.status);
-        console.log(error.response.headers);
-      } else if (error.request) {
-        console.log(error.request);
-      } else {
-        console.log("Error", error.message);
-      }
-      console.log(error.config);
     });
   }
 };
-
 function whatItSays() {
-
+fs.readFile("random.txt", "utf8", function(error, data) {
+  if (error) {
+    return console.log(error);
+  }
+  var dataArr = data.split(",");
+  search = dataArr[1];
+  spotifySearch();
+})
 };
