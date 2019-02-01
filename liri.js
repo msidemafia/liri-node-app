@@ -14,6 +14,7 @@ var divider = "\n-------------------------------\n"
 var bandQuery = "https://rest.bandsintown.com/artists/" + search + "/events?app_id=codingbootcamp";
 var movieQuery = "http://www.omdbapi.com/?i=tt3896198&apikey=88337377&t=" + search;
 var defaultQuery = "http://www.omdbapi.com/?i=tt3896198&apikey=88337377&t=mr+nobody";
+var defaultSpotify = "the sign ace of base";
 
 switch(op) {
   case "concert-this":
@@ -46,6 +47,9 @@ function bandSearch() {
 };
 
 function spotifySearch() {
+  if (!search) {
+    search = defaultSpotify;
+  }
   spotify.search({ type: 'track', query: search}, function(err, data) {
     var result = data.tracks.items[0];
     var songDisplay = "Artist: " + result.artists[0].name +
