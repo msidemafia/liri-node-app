@@ -3,3 +3,57 @@ Song Name: Heart Of Glass - Special Mix
 Preview Link: null
 Album: Greatest Hits
 -------------------------------
+Title: Guardians of the Galaxy Vol. 2
+Year: 2017
+IMDB Rating: 7.7/10
+Rotten Tomatoes Rating: 83%
+Country of Production: USA
+Language: English
+Actors: Chris Pratt, Zoe Saldana, Dave Bautista, Vin Diesel
+Plot: The Guardians struggle to keep together as a team while dealing with their personal family issues, notably Star-Lord's encounter with his father the ambitious celestial being Ego.
+-------------------------------
+Title: Guardians of the Galaxy Vol. 2
+Year: 2017
+IMDB Rating: 7.7/10
+Rotten Tomatoes Rating: 83%
+Country of Production: USA
+Language: English
+Actors: Chris Pratt, Zoe Saldana, Dave Bautista, Vin Diesel
+Plot: The Guardians struggle to keep together as a team while dealing with their personal family issues, notably Star-Lord's encounter with his father the ambitious celestial being Ego.
+-------------------------------
+Title: The Matrix
+Year: 1999
+IMDB Rating: 8.7/10
+Rotten Tomatoes Rating: 88%
+Country of Production: USA
+Language: English
+Actors: Keanu Reeves, Laurence Fishburne, Carrie-Anne Moss, Hugo Weaving
+Plot: A computer hacker learns from mysterious rebels about the true nature of his reality and his role in the war against its controllers.
+-------------------------------
+Title: Mr. Nobody
+Year: 2009
+IMDB Rating: 7.8/10
+Rotten Tomatoes Rating: 67%
+Country of Production: Belgium, Germany, Canada, France, USA, UK
+Language: English, Mohawk
+Actors: Jared Leto, Sarah Polley, Diane Kruger, Linh Dan Pham
+Plot: A boy stands on a station platform as a train is about to leave. Should he go with his mother or stay with his father? Infinite possibilities arise from this decision. As long as he doesn't choose, anything is possible.
+-------------------------------
+Title: The Matrix
+Year: 1999
+IMDB Rating: 8.7/10
+Rotten Tomatoes Rating: 88%
+Country of Production: USA
+Language: English
+Actors: Keanu Reeves, Laurence Fishburne, Carrie-Anne Moss, Hugo Weaving
+Plot: A computer hacker learns from mysterious rebels about the true nature of his reality and his role in the war against its controllers.
+-------------------------------
+Title: Mr. Nobody
+Year: 2009
+IMDB Rating: 7.8/10
+Rotten Tomatoes Rating: 67%
+Country of Production: Belgium, Germany, Canada, France, USA, UK
+Language: English, Mohawk
+Actors: Jared Leto, Sarah Polley, Diane Kruger, Linh Dan Pham
+Plot: A boy stands on a station platform as a train is about to leave. Should he go with his mother or stay with his father? Infinite possibilities arise from this decision. As long as he doesn't choose, anything is possible.
+-------------------------------

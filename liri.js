@@ -64,8 +64,10 @@ function spotifySearch() {
 
 function movieSearch() {
   if(!search) {
+    movieQuery = defaultQuery;
+  }
     axios
-    .get(defaultQuery)
+    .get(movieQuery)
     .then(function(response) {
       var result = response.data;
       var movieLog = "Title: " + result.Title +
@@ -82,27 +84,6 @@ function movieSearch() {
         });
         console.log(movieLog);
     });
-  }
-  else {
-    axios
-    .get(movieQuery)
-    .then(function(response) {
-      var result = response.data
-      var movieLog = "Title: " + result.Title +
-      "\nYear: " + result.Year + 
-      "\nIMDB Rating: " + result.Ratings[0].Value + 
-      "\nRotten Tomatoes Rating: " + result.Ratings[1].Value + 
-      "\nCountry of Production: " + result.Country + 
-      "\nLanguage: " + result.Language +
-      "\nActors: " + result.Actors + 
-      "\nPlot: " + result.Plot
-
-        fs.appendFile("log.txt", movieLog + divider, function(err) {
-          if (err) throw err;
-        });
-        console.log(movieLog);
-    });
-  }
 };
 function whatItSays() {
 fs.readFile("random.txt", "utf8", function(error, data) {
